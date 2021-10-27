@@ -1,25 +1,25 @@
-@extends('admin.layouts.app')
+{{-- @extends('admin.layouts.app')
 
 @section('title', 'Cadastrar novo produto')
 
-@section('content')
+@section('content') --}}
 
-<h1>Cadastrar novo produto </h1>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Cadastrar produto') }}
+        </h2>
+    </x-slot>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            
+            @include('admin.includes.alert')
 
-@if ($errors->any())
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-@endif
+            <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
+                @include('admin.pages.products._partials.form')
+            </form>
 
-<form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
-    @csrf
-    <input type="text" name="name" id="name" placeholder="Nome:" value="{{ old('name') }}">
-    <input type="text" name="description" id="description" placeholder="Descrição:" value="{{ old('description') }}">
-    <input type="file" name="photo" id="photo">
-    <button type="submit">Enviar</button>
-</form>
-
-@endsection
+        </div>
+    </div>
+</x-app-layout>
+{{-- @endsection --}}
